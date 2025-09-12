@@ -19,6 +19,7 @@
 #include <atomic>
 #include <thread>
 #include <initializer_list>
+#include <stdexcept>
 
 namespace faircmd_split {
   namespace detail {
@@ -51,9 +52,8 @@ namespace faircmd_split {
   inline void dump_pending_to_stderr() noexcept {
     std::lock_guard<std::mutex> lk(detail::mtx());
     std::cerr << "[faircmd-split][pending=" << detail::bag().size() << "] { ";
-    for (auto& kv : detail::bag()) std::cerr << '"' << kv.first << "": " << kv.second << "  ";
-    std::cerr << "}
-";
+    for (auto& kv : detail::bag()) std::cerr << '"' << kv.first << "\": " << kv.second << "  ";
+    std::cerr << "}\n";
   }
 
   inline void WaitForCommand(const char* who, const char* expected) {
@@ -70,10 +70,9 @@ namespace faircmd_split {
       }
 
       if (--remaining <= 0) {
-        std::cerr << "[faircmd-split][ERROR] " << (who?who:"?") << " expected ""
-                  << exp << "" but it was not present; giving up after "
-                  << detail::default_fails().load() << " waits
-";
+        std::cerr << "[faircmd-split][ERROR] " << (who?who:"?")
+                  << " expected \"" << exp << "\" but it was not present; giving up after "
+                  << detail::default_fails().load() << " waits\n";
         throw std::runtime_error("faircmd_split: token not present");
       }
 
