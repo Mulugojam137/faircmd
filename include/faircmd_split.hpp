@@ -1,14 +1,22 @@
 /*------------------------------------------------------------------------------
-  faircmd_split.hpp — Split modes; machine store is a BAG (presence, not order)
+  faircmd_split.hpp — "Split" mode
 
-  Purpose: availability/robustness checks where order does not matter.
+  This mode stores tokens in a bag (unordered multiset).
+  Unlike machine mode, order does not matter: a wait succeeds
+  as soon as the expected token is present, regardless of when it arrived.
+
+  Intended use:
+    - Robustness checks where token order is irrelevant.
+    - Quick availability checks.
 
   Guarantees:
-    - Satisfies waits when a matching token is present; not FIFO.
-    - Diagnostics -> std::cerr.
+    - Waits succeed if a matching token exists in the bag (not FIFO).
+    - All diagnostics are printed to std::cerr.
 
-  API: same as other variants.
+  API:
+    - Same interface as other faircmd modes, but with unordered semantics.
 ------------------------------------------------------------------------------*/
+
 #pragma once
 #include <unordered_map>
 #include <string>
