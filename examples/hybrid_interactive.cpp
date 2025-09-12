@@ -1,5 +1,8 @@
 #include <iostream>
-#define FAIRCMD_MODE 0
+
+#ifndef FAIRCMD_MODE
+#define FAIRCMD_MODE 0  // default to hybrid when not overridden by the build
+#endif
 #include "faircmd.hpp"
 
 int main() {

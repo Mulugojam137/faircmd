@@ -83,4 +83,31 @@ namespace faircmd_split {
       lk.lock();
     }
   }
+
+  // Waits for a full line (instead of token-by-token).
+  inline void WaitForCommandLoose(const char* who, const char* expected) {
+      const std::string exp = expected ? expected : "";
+      int remaining = detail::default_fails().load();
+
+      while (true) {
+          std::string line;
+          if (!std::getline(std::cin, line)) {
+              throw std::runtime_error("faircmd_split: stdin closed while waiting");
+          }
+
+          if (line == exp) return;
+
+          if (--remaining <= 0) {
+              std::cerr << "[faircmd-split][ERROR] " << (who ? who : "?")
+                  << " expected line \"" << exp
+                  << "\" but it was not entered; giving up after "
+                  << detail::default_fails().load() << " attempts\n";
+              throw std::runtime_error("faircmd_split: line not entered");
+          }
+
+          auto ns = detail::yield_ns().load();
+          if (ns > 0) std::this_thread::sleep_for(std::chrono::nanoseconds(ns));
+          else std::this_thread::yield();
+      }
+  }
 } // namespace faircmd_split
