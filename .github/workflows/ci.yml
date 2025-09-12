@@ -1,0 +1,42 @@
+﻿name: ci
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build-linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Configure + build with CMake (works if you kept the sample CMakeLists.txt)
+      - name: Configure
+        run: cmake -S . -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=17
+      - name: Build
+        run: cmake --build build --config Release -- -j 2
+
+      # Header-only smoke test (independent of your CMake project)
+      - name: Header-only compile smoke test
+        run: |
+          cat > t.cpp <<'CPP'
+          #include <iostream>
+          #define FAIRCMD_MODE 2
+          #include "include/faircmd.hpp"
+          int main(){ std::cout << "ok\n"; }
+          CPP
+          g++ -std=gnu++17 -Wall -Wextra -pedantic t.cpp -I . -o t
+          ./t
+
+      # Run example if it exists (non-fatal if not present)
+      - name: Run example (machine_basic) if present
+        run: |
+          if [ -x build/examples/machine_basic ]; then
+            build/examples/machine_basic
+          elif [ -x build/machine_basic ]; then
+            build/machine_basic
+          else
+            echo "No example executable found; skipping."
+          fi
