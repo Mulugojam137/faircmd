@@ -1,0 +1,26 @@
+# Build / CMake
+/build/
+/out/
+/bin/
+/lib/
+CMakeFiles/
+CMakeCache.txt
+cmake-build-*/
+
+# MSVC / VS
+*.obj
+*.pdb
+*.ilk
+*.lib
+*.exp
+*.exe
+*.dll
+.vs/
+*.user
+*.suo
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
