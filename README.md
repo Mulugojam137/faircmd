@@ -1,3 +1,5 @@
+[![ci](https://github.com/<USER>/faircmd/actions/workflows/ci.yml/badge.svg)](https://github.com/peterdriscoll/faircmd/actions/workflows/ci.yml)
+
 # faircmd — tiny C++ command script runners (header-only)
 
 faircmd is a header-only set of C++ “script runners” for driving deterministic and interactive test harnesses. It provides three modes: machine (strict FIFO, CI-friendly), hybrid (stdin + queue for demos), and split (bag-of-tokens when order doesn’t matter). Cross-platform, no deps, with examples and CMake.
