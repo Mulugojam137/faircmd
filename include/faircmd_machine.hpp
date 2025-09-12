@@ -63,12 +63,12 @@ namespace faircmd_machine {
     detail::cv().notify_all();
   }
 
+  // --- replace dump_pending_to_stderr() with this ---
   inline void dump_pending_to_stderr() noexcept {
     std::lock_guard<std::mutex> lk(detail::mtx());
     std::cerr << "[faircmd][pending=" << detail::q().size() << "] { ";
-    for (auto& s : detail::q()) std::cerr << '"' << s << "" ";
-    std::cerr << "}
-";
+    for (auto& s : detail::q()) std::cerr << '"' << s << "\" ";
+    std::cerr << "}\n";
   }
 
   inline void WaitForCommand(const char* who, const char* expected) {
@@ -87,11 +87,11 @@ namespace faircmd_machine {
       }
 
       if (--remaining <= 0) {
-        std::cerr << "[faircmd][ERROR] " << (who?who:"?") << " expected ""
-                  << exp << "" but saw "" << detail::q().front()
-                  << ""; giving up after " << detail::default_fails().load()
-                  << " waits
-";
+        std::cerr << "[faircmd][ERROR] " << (who ? who : "?")
+            << " expected \"" << exp
+            << "\" but saw \"" << detail::q().front()
+            << "\"; giving up after " << detail::default_fails().load()
+            << " waits\n";
         throw std::runtime_error("faircmd_machine: front mismatch");
       }
 
