@@ -1,21 +1,34 @@
-﻿name: ci
+name: ci
 
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 jobs:
-  build:
+  smoke-linux:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Header-only compile smoke test
+
+      - name: Toolchain info
+        run: |
+          uname -a || true
+          g++ --version || true
+          clang++ --version || true
+
+      - name: Ensure toolchain
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y g++ make
+
+      - name: Header-only compile smoke test (g++)
         run: |
           cat > t.cpp <<'CPP'
           #include <iostream>
           #define FAIRCMD_MODE 2
           #include "include/faircmd.hpp"
-          int main(){ std::cout << "ok\n"; }
+          int main(){ faircmd::reset(); std::cout << "ok\n"; }
           CPP
-          g++ -std=gnu++17 -Wall -Wextra -pedantic -I . t.cpp -o t
+          g++ -std=gnu++17 -Wall -Wextra -pedantic -pthread -I . t.cpp -o t
           ./t
