@@ -36,3 +36,21 @@ jobs:
           CPP
           g++ -std=gnu++17 -Wall -Wextra -pedantic -pthread -I . t.cpp -o t
           ./t
+      - name: Hybrid header-only smoke (FAIRCMD_MODE=0)
+        run: |
+          cat > t_h.cpp <<'CPP'
+          #define FAIRCMD_MODE 0
+          #include "include/faircmd.hpp"
+          int main(){ faircmd::reset(); }
+          CPP
+          g++ -std=gnu++17 -I . t_h.cpp -o t_h
+
+      - name: Split header-only smoke (FAIRCMD_MODE=1)
+        run: |
+          cat > t_s.cpp <<'CPP'
+          #define FAIRCMD_MODE 1
+          #include "include/faircmd.hpp"
+          int main(){ faircmd::reset(); }
+          CPP
+          g++ -std=gnu++17 -I . t_s.cpp -o t_s
+
