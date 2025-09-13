@@ -16,5 +16,7 @@ int main() {
   std::cout << "hello!" << std::endl;
   faircmd::WaitForCommand("demo","world");
   std::cout << "world!" << std::endl;
+  std::string cpp = faircmd::emit_cpp("preload");   // paste into a unit test
+  std::cerr << cpp;
   faircmd::stop_stdin_pumper();
 }
